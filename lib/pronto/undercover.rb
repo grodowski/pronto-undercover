@@ -3,6 +3,7 @@
 require 'pronto'
 require 'undercover/options'
 require 'undercover'
+require 'pronto/patch_changeset'
 
 module Pronto
   # Runner class for undercover
