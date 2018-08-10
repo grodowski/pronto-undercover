@@ -2,16 +2,16 @@
 
 class BaconClass
   def self.bar
-    puts "BaconClass.bar\x87"
+    puts "BaconClass\x87"
   end
 
   def foo
-    puts 'BaconClass#foo'
+    puts 'BaconClass#f'
   end
 
   class BaconChildClass
     def foo_child
-      puts 'BaconClass::BaconChildClass#foo'
+      puts 'BaconClass::BaconChildClass#lol'
     end
   end
   private_constant :BaconChildClass
