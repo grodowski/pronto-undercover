@@ -21,13 +21,13 @@ RSpec.describe Pronto::Undercover do
       after { Dir.chdir(__dir__) }
 
       it 'reports undercover warnings as messages with' do
-        results = Pronto.run(:staged, '.', nil)
+        results = Pronto.run(:staged, 'test.git', nil)
 
         expect(results.size).to eq(2)
       end
 
       it 'reports severity, text, filename and line number' do
-        results = Pronto.run(:staged, '.', nil)
+        results = Pronto.run(:staged, 'test.git', nil)
 
         msg = results.first
         expect(msg).to be_a(Pronto::Message)

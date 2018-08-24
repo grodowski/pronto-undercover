@@ -2,7 +2,7 @@
 
 RSpec.describe Pronto::PatchChangeset do
   let(:staged_patches) do
-    Pronto::Git::Repository.new('spec/fixtures').diff(:staged)
+    Pronto::Git::Repository.new('spec/fixtures/test.git').diff(:staged)
   end
 
   subject(:changeset) { described_class.new(staged_patches) }
