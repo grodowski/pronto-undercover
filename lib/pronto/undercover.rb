@@ -29,8 +29,11 @@ module Pronto
 
     private
 
+    # rubocop:disable Metrics/AbcSize
     def undercover_warning_to_message(warning)
-      msg = "#{warning.node.human_name} #{warning.node.name} needs a test!" \
+      lines = untested_lines_for(warning)
+      msg = "#{warning.node.human_name} #{warning.node.name} missing tests" \
+        " for line#{'s' if lines.size > 1} #{lines.join(', ')}" \
         " (coverage: #{warning.coverage_f})"
 
       line = @patches.find_line(
@@ -38,6 +41,13 @@ module Pronto
         warning.first_line
       )
       Message.new(warning.file_path, line, DEFAULT_LEVEL, msg)
+    end
+    # rubocop:enable Metrics/AbcSize
+
+    def untested_lines_for(warning)
+      warning.coverage.map do |ln, _cov|
+        ln if warning.uncovered?(ln)
+      end.compact
     end
 
     def undercover_options

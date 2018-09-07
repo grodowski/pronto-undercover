@@ -6,6 +6,7 @@ class BaconClass
   end
 
   def foo
+    puts 'Covered line'
     puts 'BaconClass#f'
   end
 

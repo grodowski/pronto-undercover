@@ -33,8 +33,7 @@ RSpec.describe Pronto::Undercover do
         expect(msg).to be_a(Pronto::Message)
         expect(msg.line).to be_a(Pronto::Git::Line)
         expect(msg.msg).to eq(
-          # TODO: make this output better
-          'instance method foo needs a test! (coverage: 0.0)'
+          'instance method foo missing tests for line 10 (coverage: 0.5)'
         )
         expect(msg.level).to eq(:warning)
         expect(msg.line.new_lineno).to eq(8)
