@@ -22,6 +22,9 @@ module Pronto
         @patch_changeset, undercover_options
       ).build
       report.build_warnings.map(&method(:undercover_warning_to_message))
+    rescue Errno::ENOENT => e
+      warn("Could not open file! #{e}")
+      []
     end
 
     private
@@ -38,7 +41,12 @@ module Pronto
     end
 
     def undercover_options
-      ::Undercover::Options.new.parse([]) # default all the things!
+      config = Pronto::ConfigFile.new.to_h
+      opts = []
+      opts << "-l#{config['lcov']}" if config['lcov']
+      opts << "-r#{config['ruby-syntax']}" if config['ruby-syntax']
+      opts << "-p#{config['path']}" if config['path']
+      ::Undercover::Options.new.parse(opts)
     end
   end
 end

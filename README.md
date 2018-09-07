@@ -2,37 +2,38 @@
 
 # Pronto::Undercover
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pronto/undercover`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Pronto runner for [Undercover](https://github.com/grodowski/undercover), an actionable code coverage tool. What is [Pronto](https://github.com/prontolabs/pronto)?
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application's Gemfile
 
 ```ruby
 gem 'pronto-undercover'
 ```
 
-And then execute:
+or install the gem with
 
-    $ bundle
+```shell
+gem install pronto-undercover
+```
 
-Or install it yourself as:
+Once installed, `pronto run` will include undercover warnings. You can verify the install by running `pronto list`.
 
-    $ gem install pronto-undercover
+## Configuring
 
-## Usage
+`pronto-undercover` stores options passed to undercover in `.pronto.yml`. Please note that `--git-dir` and `--compare` options are not available, because `pronto-undercover` uses `Pronto::Git` instead of undercover's implementation.
 
-TODO: Write usage instructions here
+Available options:
 
-## Development
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pronto-undercover.
+```
+# .pronto.yml
+# ...other configuration
+pronto-undercover:
+  path: path/to/project
+  lcov: path/to/project/coverage/report.lcov
+  ruby-syntax: ruby19
+```
 
 ## License
 
