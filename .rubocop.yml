@@ -12,6 +12,10 @@ Layout/SpaceInsideHashLiteralBraces:
   Enabled: true
   EnforcedStyle: no_space
 
+Metrics/LineLength:
+  Enabled: True
+  Max: 100
+
 Metrics/BlockLength:
   Enabled: true
   Exclude:

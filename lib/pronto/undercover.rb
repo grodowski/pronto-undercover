@@ -56,8 +56,9 @@ module Pronto
 
     def offending_line_numbers(patch)
       patch_lines = patch.added_lines.map(&:position)
+      path = patch.new_file_full_path.to_s
       undercover_warnings
-        .select { |warning| File.expand_path(warning.file_path) == patch.new_file_full_path.to_s }
+        .select { |warning| File.expand_path(warning.file_path) == path }
         .map do |warning|
           first_line_no = patch_lines.find { |l| warning.uncovered?(l) }
           [warning, first_line_no] if first_line_no
