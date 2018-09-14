@@ -2,6 +2,7 @@
 
 require 'bundler/setup'
 require 'timecop'
+require 'pry'
 
 require 'simplecov'
 require 'simplecov-lcov'

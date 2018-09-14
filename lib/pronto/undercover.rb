@@ -17,11 +17,12 @@ module Pronto
 
     # @return Array[Pronto::Message]
     def run
-      return [] unless @patches.first
-      report = ::Undercover::Report.new(
-        @patch_changeset, undercover_options
-      ).build
-      report.build_warnings.map(&method(:undercover_warning_to_message))
+      return [] if !@patches || @patches.count.zero?
+
+      @patches
+        .select { |patch| patch.additions.positive? }
+        .map { |patch| patch_to_undercover_message(patch) }
+        .flatten.compact
     rescue Errno::ENOENT => e
       warn("Could not open file! #{e}")
       []
@@ -29,20 +30,39 @@ module Pronto
 
     private
 
-    # rubocop:disable Metrics/AbcSize
-    def undercover_warning_to_message(warning)
-      lines = untested_lines_for(warning)
-      msg = "#{warning.node.human_name} #{warning.node.name} missing tests" \
-        " for line#{'s' if lines.size > 1} #{lines.join(', ')}" \
-        " (coverage: #{warning.coverage_f})"
-
-      line = @patches.find_line(
-        Pathname.new(File.expand_path(warning.file_path)),
-        warning.first_line
-      )
-      Message.new(warning.file_path, line, DEFAULT_LEVEL, msg)
+    # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+    def patch_to_undercover_message(patch)
+      offending_line_numbers(patch).map do |warning, msg_line_no|
+        patch
+          .added_lines
+          .select { |line| line.new_lineno == msg_line_no }
+          .map do |line|
+            lines = untested_lines_for(warning)
+            path = line.patch.delta.new_file[:path]
+            msg = "#{warning.node.human_name} #{warning.node.name} missing tests" \
+                  " for line#{'s' if lines.size > 1} #{lines.join(', ')}" \
+                  " (coverage: #{warning.coverage_f})"
+            Message.new(path, line, DEFAULT_LEVEL, msg)
+          end
+      end
     end
-    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
+
+    def undercover_warnings
+      @undercover_warnings ||= ::Undercover::Report.new(
+        @patch_changeset, undercover_options
+      ).build.build_warnings
+    end
+
+    def offending_line_numbers(patch)
+      patch_lines = patch.added_lines.map(&:position)
+      undercover_warnings
+        .select { |warning| File.expand_path(warning.file_path) == patch.new_file_full_path.to_s }
+        .map do |warning|
+          first_line_no = patch_lines.find { |l| warning.uncovered?(l) }
+          [warning, first_line_no] if first_line_no
+        end.compact
+    end
 
     def untested_lines_for(warning)
       warning.coverage.map do |ln, _cov|

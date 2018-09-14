@@ -36,7 +36,7 @@ RSpec.describe Pronto::Undercover do
           'instance method foo missing tests for line 10 (coverage: 0.5)'
         )
         expect(msg.level).to eq(:warning)
-        expect(msg.line.new_lineno).to eq(8)
+        expect(msg.line.new_lineno).to eq(10)
       end
 
       it 'passes options from .pronto.yml to Undercover::Report' do
