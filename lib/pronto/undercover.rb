@@ -79,6 +79,7 @@ module Pronto
     def undercover_options
       config = Pronto::ConfigFile.new.to_h['pronto-undercover']
       return ::Undercover::Options.new.parse([]) unless config
+
       opts = []
       opts << "-l#{config['lcov']}" if config['lcov']
       opts << "-r#{config['ruby-syntax']}" if config['ruby-syntax']

@@ -17,6 +17,7 @@ module Pronto
     def last_modified
       mod = file_paths.map do |f|
         next T_ZERO unless File.exist?(f)
+
         File.mtime(f)
       end.max
       mod || T_ZERO
