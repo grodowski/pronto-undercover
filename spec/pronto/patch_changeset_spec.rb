@@ -12,10 +12,7 @@ RSpec.describe Pronto::PatchChangeset do
       collection = []
       changeset.each_changed_line { |file, ln| collection << [file, ln] }
 
-      expect(collection).to eq(
-        (1..18).map { |line| ['class.rb', line] } + \
-        (1..11).map { |line| ['coverage/lcov/fixtures.lcov', line] }
-      )
+      expect(collection).to eq((1..19).map { |line| ['class.rb', line] })
     end
   end
 
@@ -48,7 +45,7 @@ RSpec.describe Pronto::PatchChangeset do
     end
 
     it 'returns nil otherwise' do
-      FileUtils.touch(changeset.file_paths, mtime: Time.now)
+      FileUtils.touch(lcov_path, mtime: Time.now)
       expect(changeset.validate(lcov_path)).to eq(nil)
     end
   end
