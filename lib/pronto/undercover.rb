@@ -20,7 +20,7 @@ module Pronto
       return [] if !@patches || @patches.count.zero?
 
       @patches
-        .select { |patch| patch.additions.positive? }
+        .select { |patch| valid_patch?(patch) }
         .map { |patch| patch_to_undercover_message(patch) }
         .flatten.compact
     rescue Errno::ENOENT => e
@@ -29,6 +29,10 @@ module Pronto
     end
 
     private
+
+    def valid_patch?(patch)
+      patch.additions.positive? && ruby_file?(patch.new_file_full_path)
+    end
 
     # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     def patch_to_undercover_message(patch)
