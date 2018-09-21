@@ -12,7 +12,7 @@ class BaconClass
 
   class BaconChildClass
     def foo_child
-      puts 'BaconClass::BaconChildClass#lol_im_uncovered'
+      puts 'BaconClass::BaconChildClass#lol_im_uncovered_wow!'
     end
   end
   private_constant :BaconChildClass
