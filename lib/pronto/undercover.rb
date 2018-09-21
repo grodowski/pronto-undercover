@@ -55,7 +55,7 @@ module Pronto
     end
 
     def offending_line_numbers(patch)
-      patch_lines = patch.added_lines.map(&:position)
+      patch_lines = patch.added_lines.map(&:new_lineno)
       path = patch.new_file_full_path.to_s
       undercover_warnings
         .select { |warning| File.expand_path(warning.file_path) == path }
@@ -71,13 +71,16 @@ module Pronto
       end.compact
     end
 
+    # rubocop:disable Metrics/AbcSize
     def undercover_options
-      config = Pronto::ConfigFile.new.to_h
+      config = Pronto::ConfigFile.new.to_h['pronto-undercover']
+      return ::Undercover::Options.new.parse([]) unless config
       opts = []
       opts << "-l#{config['lcov']}" if config['lcov']
       opts << "-r#{config['ruby-syntax']}" if config['ruby-syntax']
       opts << "-p#{config['path']}" if config['path']
       ::Undercover::Options.new.parse(opts)
     end
+    # rubocop:enable Metrics/AbcSize
   end
 end

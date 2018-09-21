@@ -12,7 +12,7 @@ RSpec.describe Pronto::PatchChangeset do
       collection = []
       changeset.each_changed_line { |file, ln| collection << [file, ln] }
 
-      expect(collection).to eq((1..19).map { |line| ['class.rb', line] })
+      expect(collection).to include(*((1..19).map { |line| ['class.rb', line] }))
     end
   end
 
