@@ -2,3 +2,5 @@
 46afdb55a6b24768f9514d1378ae1181a698295a 0b3a28b087fbdee62759568fa7307a06e773f8c8 Jan Grodowski <jgrodowski@gmail.com> 1533919996 +0200	commit: add class.rb
 0b3a28b087fbdee62759568fa7307a06e773f8c8 46afdb55a6b24768f9514d1378ae1181a698295a Jan Grodowski <jgrodowski@gmail.com> 1533920219 +0200	reset: moving to 46afdb55a6b24768f9514d1378ae1181a698295a
 46afdb55a6b24768f9514d1378ae1181a698295a 719231e064637ca613f61f673b9b2eedc2505f83 Jan Grodowski <jgrodowski@gmail.com> 1533920260 +0200	commit: add class.rb
+719231e064637ca613f61f673b9b2eedc2505f83 e1cd19c6e34a31e0e1597d41b612c4a61b7ff2d5 Jan Grodowski <jgrodowski@gmail.com> 1537528180 +0200	commit: add file for testing patch line nums
+e1cd19c6e34a31e0e1597d41b612c4a61b7ff2d5 878e669bdd8736f55c4a748c7563cb30d3eb824b Jan Grodowski <jgrodowski@gmail.com> 1537529069 +0200	commit: update cov
