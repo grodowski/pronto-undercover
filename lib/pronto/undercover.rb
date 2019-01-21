@@ -46,7 +46,7 @@ module Pronto
             msg = "#{warning.node.human_name} #{warning.node.name} missing tests" \
                   " for line#{'s' if lines.size > 1} #{lines.join(', ')}" \
                   " (coverage: #{warning.coverage_f})"
-            Message.new(path, line, DEFAULT_LEVEL, msg)
+            Message.new(path, line, DEFAULT_LEVEL, msg, nil, self.class)
           end
       end
     end
