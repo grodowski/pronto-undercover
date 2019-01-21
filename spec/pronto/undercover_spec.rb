@@ -44,6 +44,7 @@ RSpec.describe Pronto::Undercover do
         )
         expect(msg.level).to eq(:warning)
         expect(msg.line.new_lineno).to eq(10)
+        expect(msg.runner).to eq(Pronto::Undercover)
       end
 
       it 'passes options from .pronto.yml to Undercover::Report' do
