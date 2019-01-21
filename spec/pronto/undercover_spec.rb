@@ -76,7 +76,7 @@ RSpec.describe Pronto::Undercover do
       it 'correctly reports on a patch inside of a changed file' do
         write_config(valid_config)
 
-        results = Pronto.run(:staged, 'test.git', nil)
+        results = Pronto.run(:unstaged, 'test.git', nil)
 
         msg = results.find { |res| res.path == 'patch.rb' }
         expect(msg).to be_a(Pronto::Message)
