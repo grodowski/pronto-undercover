@@ -36,7 +36,7 @@ RSpec.describe Pronto::Undercover do
       it 'reports severity, text, filename and line number' do
         results = Pronto.run(:staged, 'test.git', nil)
 
-        msg = results.first
+        msg = results.find { |r| r.msg =~ /instance method foo/ }
         expect(msg).to be_a(Pronto::Message)
         expect(msg.line).to be_a(Pronto::Git::Line)
         expect(msg.msg).to eq(
