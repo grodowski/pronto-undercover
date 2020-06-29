@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'pronto', '>= 0.9', '< 0.11'
-  spec.add_dependency 'undercover', '~> 0.3.0'
+  spec.add_dependency 'undercover', '~> 0.3.4'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.0'

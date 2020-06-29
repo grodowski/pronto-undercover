@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.5] - 2019-03-19
+### Added
+- Use flagged_results accessor by @yassinecc
+
 ## [0.1.4] - 2019-03-19
 ### Added
 - This `CHANGELOG.md`
@@ -13,5 +17,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - support `pronto >= 0.9`
 
-[Unreleased]: https://github.com/grodowski/pronto-undercover/compare/v0.1.4...HEAD
+[Unreleased]: https://github.com/grodowski/pronto-undercover/compare/v0.1.5...HEAD
+[0.1.5]: https://github.com/grodowski/pronto-undercover/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/grodowski/pronto-undercover/compare/v0.1.3...v0.1.4
