@@ -55,7 +55,7 @@ module Pronto
     def undercover_warnings
       @undercover_warnings ||= ::Undercover::Report.new(
         @patch_changeset, undercover_options
-      ).build.build_warnings
+      ).build.flagged_results
     end
 
     def offending_line_numbers(patch)
