@@ -1,5 +1,6 @@
 AllCops:
-  TargetRubyVersion: 2.4.4
+  TargetRubyVersion: 2.5
+  NewCops: enable
 
 Style/RegexpLiteral:
   EnforcedStyle: slashes

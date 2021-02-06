@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
     f.match(/^(test|spec|features)\//)
   end
   spec.require_paths = ['lib']
+  spec.required_ruby_version = '>= 2.5'
 
   spec.add_dependency 'pronto', '>= 0.9', '< 0.12'
   spec.add_dependency 'undercover', '~> 0.3.4'

@@ -75,7 +75,6 @@ module Pronto
       end.compact
     end
 
-    # rubocop:disable Metrics/AbcSize
     def undercover_options
       config = Pronto::ConfigFile.new.to_h['pronto-undercover']
       return ::Undercover::Options.new.parse([]) unless config
@@ -86,6 +85,5 @@ module Pronto
       opts << "-p#{config['path']}" if config['path']
       ::Undercover::Options.new.parse(opts)
     end
-    # rubocop:enable Metrics/AbcSize
   end
 end
