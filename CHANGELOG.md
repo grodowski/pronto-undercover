@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.6] - 2020-02-06
+### Changed
+- Update pronto dependency
+
 ## [0.1.5] - 2019-03-19
 ### Added
 - Use flagged_results accessor by @yassinecc
