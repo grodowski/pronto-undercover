@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.0] - 2021-10-19
+### Added
+- Update `undercover` to `0.4.3`, now with coverage support (@korrs)
+
 ## [0.1.6] - 2020-02-06
 ### Changed
 - Update pronto dependency
@@ -21,6 +25,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - support `pronto >= 0.9`
 
-[Unreleased]: https://github.com/grodowski/pronto-undercover/compare/v0.1.5...HEAD
+[Unreleased]: https://github.com/grodowski/pronto-undercover/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/grodowski/pronto-undercover/compare/v0.1.6...v0.2.0
+[0.1.6]: https://github.com/grodowski/pronto-undercover/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/grodowski/pronto-undercover/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/grodowski/pronto-undercover/compare/v0.1.3...v0.1.4
