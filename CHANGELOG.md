@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.2.0] - 2021-10-19
 ### Added
-- Update `undercover` to `0.4.3`, now with coverage support (@korrs)
+- Update `undercover` to `0.4.3`, now with branch coverage support (@korrs)
 
 ## [0.1.6] - 2020-02-06
 ### Changed
