@@ -24,6 +24,8 @@ Once installed, `pronto run` will include undercover warnings. You can verify th
 
 `pronto-undercover` stores options passed to undercover in `.pronto.yml`. Please note that `--git-dir` and `--compare` options are not available, because `pronto-undercover` uses `Pronto::Git` instead of undercover's implementation.
 
+`min-coverage`: Minimum coverage for `coverage:`, not raise warning if more than it.
+
 Available options:
 
 ```
@@ -33,6 +35,7 @@ pronto-undercover:
   path: path/to/project
   lcov: path/to/project/coverage/report.lcov
   ruby-syntax: ruby19
+  min-coverage: 1
 ```
 
 ## License

@@ -12,7 +12,7 @@ RSpec.describe Pronto::Undercover do
         'lcov' => 'coverage/lcov/fixtures.lcov',
         'path' => '.',
         'ruby-syntax' => 'ruby22',
-        'min_coverage' => 1
+        'min-coverage' => 1
       }
     end
     subject { Pronto::Undercover.new(patches) }
@@ -49,7 +49,7 @@ RSpec.describe Pronto::Undercover do
       end
 
       it 'not report if coverage >= min_coverage' do
-        write_config('min_coverage' => 0.5)
+        write_config('min-coverage' => 0.5)
         results = Pronto.run(:staged, 'test.git', nil)
         expect(results.size).to eq(1)
       end

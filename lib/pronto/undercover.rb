@@ -92,7 +92,7 @@ module Pronto
     def min_coverage
       @min_coverage ||= ENV['PRONTO_REEK_SEVERITY_LEVEL'] ||
                         Pronto::ConfigFile.new.to_h.dig('pronto-undercover',
-                                                        'min_coverage') ||
+                                                        'min-coverage') ||
                         1
     end
   end
