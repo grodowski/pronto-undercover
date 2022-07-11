@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov-html'
   spec.add_development_dependency 'simplecov-lcov'
   spec.add_development_dependency 'timecop'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end

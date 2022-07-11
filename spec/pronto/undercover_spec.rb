@@ -95,9 +95,7 @@ RSpec.describe Pronto::Undercover do
   end
 
   def write_config(yaml_config_hash)
-    File.open('.pronto.yml', 'w') do |config_file|
-      config_file.write({'pronto-undercover' => yaml_config_hash}.to_yaml)
-    end
+    File.write('.pronto.yml', {'pronto-undercover' => yaml_config_hash}.to_yaml)
   end
 
   def delete_config
