@@ -66,8 +66,8 @@ RSpec.describe Pronto::Undercover do
       it 'prints a warning message with no available lcov file' do
         write_config('lcov' => 'does_not_exist')
 
-        errmsg = 'Could not open file! No such file or' \
-                 " directory @ rb_sysopen - does_not_exist\n"
+        errmsg = 'Could not open file! No such file or ' \
+                 "directory @ rb_sysopen - does_not_exist\n"
         expect { Pronto.run(:staged, 'test.git', nil) }
           .to output(errmsg).to_stderr
 
