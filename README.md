@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/grodowski/pronto-undercover.svg?branch=master)](https://travis-ci.org/grodowski/pronto-undercover)
+[![Build Status](https://github.com/grodowski/pronto-undercover/actions/workflows/ruby.yml/badge.svg)](https://github.com/grodowski/pronto-undercover/actions)
+![Downloads](https://img.shields.io/gem/dt/pronto-undercover)
 
 # Pronto::Undercover
 
