@@ -66,8 +66,8 @@ RSpec.describe Pronto::Undercover do
       it 'prints a warning message with no available lcov file' do
         write_config('lcov' => 'does_not_exist')
 
-        errmsg = 'Could not open file! No such file or' \
-                 " directory @ rb_sysopen - does_not_exist\n"
+        errmsg = 'Could not open file! No such file or ' \
+                 "directory @ rb_sysopen - does_not_exist\n"
         expect { Pronto.run(:staged, 'test.git', nil) }
           .to output(errmsg).to_stderr
 
@@ -95,9 +95,7 @@ RSpec.describe Pronto::Undercover do
   end
 
   def write_config(yaml_config_hash)
-    File.open('.pronto.yml', 'w') do |config_file|
-      config_file.write({'pronto-undercover' => yaml_config_hash}.to_yaml)
-    end
+    File.write('.pronto.yml', {'pronto-undercover' => yaml_config_hash}.to_yaml)
   end
 
   def delete_config

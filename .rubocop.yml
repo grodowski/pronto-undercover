@@ -13,7 +13,7 @@ Layout/SpaceInsideHashLiteralBraces:
   Enabled: true
   EnforcedStyle: no_space
 
-Metrics/LineLength:
+Layout/LineLength:
   Enabled: True
   Max: 100
 
