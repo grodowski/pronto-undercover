@@ -28,6 +28,9 @@ Available options:
 
 ```
 # .pronto.yml
+runners:
+  # ...other runners
+  - undercover
 # ...other configuration
 pronto-undercover:
   path: path/to/project
