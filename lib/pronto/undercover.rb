@@ -41,6 +41,9 @@ module Pronto
           .added_lines
           .select { |line| line.new_lineno == msg_line_no }
           .map do |line|
+            # binding.pry
+            next if warning.coverage_f >= min_coverage
+
             lines = untested_lines_for(warning)
             path = line.patch.delta.new_file[:path]
             msg = "#{warning.node.human_name} #{warning.node.name} missing tests " \
@@ -84,6 +87,13 @@ module Pronto
       opts << "-r#{config['ruby-syntax']}" if config['ruby-syntax']
       opts << "-p#{config['path']}" if config['path']
       ::Undercover::Options.new.parse(opts)
+    end
+
+    def min_coverage
+      @min_coverage ||= ENV['PRONTO_UNDERCOVER_MIN_COVERAGE'] ||
+                        Pronto::ConfigFile.new.to_h.dig('pronto-undercover',
+                                                        'min-coverage') ||
+                        1
     end
   end
 end
