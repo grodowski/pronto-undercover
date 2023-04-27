@@ -31,7 +31,7 @@ module Pronto
     private
 
     def valid_patch?(patch)
-      patch.additions.positive? && ruby_file?(patch.new_file_full_path)
+      patch.additions.positive?
     end
 
     # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
