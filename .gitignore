@@ -12,6 +12,7 @@ Gemfile.lock
 # rspec failure tracking
 .rspec_status
 
+.tool-versions
 .rbenv-gemsets
 .ruby-version
 .ruby-gemset

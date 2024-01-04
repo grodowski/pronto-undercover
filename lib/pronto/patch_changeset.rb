@@ -37,7 +37,8 @@ module Pronto
 
     def validate(lcov_report_path)
       return :no_changes if file_paths.empty?
-      return :stale_coverage if last_modified > File.mtime(lcov_report_path)
+
+      :stale_coverage if last_modified > File.mtime(lcov_report_path)
     end
   end
 end
