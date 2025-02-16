@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'pronto', '>= 0.9', '< 0.12'
   spec.add_dependency 'undercover', '~> 0.6'
 
+  spec.add_dependency 'base64'
   spec.add_dependency 'bigdecimal'
   spec.add_dependency 'csv'
 
