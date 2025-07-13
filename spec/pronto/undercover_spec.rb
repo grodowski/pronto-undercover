@@ -11,7 +11,10 @@ RSpec.describe Pronto::Undercover do
       {
         'lcov' => 'coverage/lcov/fixtures.lcov',
         'path' => '.',
-        'ruby-syntax' => 'ruby22'
+        'ruby-syntax' => 'ruby34',
+        'include-files' => '*.rb,Rakefile',
+        'exclude-files' => 'db/*',
+        'max-warnings' => 100
       }
     end
     subject { Pronto::Undercover.new(patches) }
@@ -54,7 +57,10 @@ RSpec.describe Pronto::Undercover do
           .to receive(:new).and_wrap_original do |m, changeset, opts|
           expect(opts.lcov).to eq('coverage/lcov/fixtures.lcov')
           expect(opts.path).to eq('.')
-          expect(opts.syntax_version).to eq('ruby22')
+          expect(opts.syntax_version).to eq('ruby34')
+          expect(opts.glob_allow_filters).to eq(['*.rb', 'Rakefile'])
+          expect(opts.glob_reject_filters).to eq(['db/*'])
+          expect(opts.max_warnings_limit).to eq(100)
           m.call(changeset, opts)
         end
 
@@ -90,6 +96,35 @@ RSpec.describe Pronto::Undercover do
         expect(msg.line.position).to eq(5)
 
         delete_config
+      end
+
+      context 'with JSON formatter option' do
+        it 'correctly reports on a patch inside of a changed file from JSON report' do
+          config = valid_config.merge(
+            'simplecov' => 'coverage/fixtures_coverage.json',
+            'lcov' => nil
+          )
+          write_config(config)
+
+          expect_any_instance_of(Undercover::LcovParser).to receive(:coverage).never
+          expect_any_instance_of(
+            Undercover::SimplecovResultAdapter
+          ).to receive(:coverage).at_least(:once).and_call_original
+
+          results = Pronto.run(:unstaged, 'test.git', nil)
+
+          msg = results.find { |res| res.path == 'patch.rb' }
+          expect(msg).to be_a(Pronto::Message)
+          expect(msg.line).to be_a(Pronto::Git::Line)
+          expect(msg.msg).to eq(
+            'instance method foo_child missing tests for line 15 (coverage: 0.0)'
+          )
+          expect(msg.level).to eq(:warning)
+          expect(msg.line.new_lineno).to eq(15)
+          expect(msg.line.position).to eq(5)
+
+          delete_config
+        end
       end
     end
   end

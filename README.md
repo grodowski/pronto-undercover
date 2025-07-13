@@ -35,8 +35,11 @@ runners:
 # ...other configuration
 pronto-undercover:
   path: path/to/project
+  simplecov: path/to/project/coverage.json
+  include-files: lib/**/*.rb,app/**/*.rb
+  exclude-files: db/*,spec/*
   lcov: path/to/project/coverage/report.lcov
-  ruby-syntax: ruby19
+  ruby-syntax: ruby34
 ```
 
 ## License

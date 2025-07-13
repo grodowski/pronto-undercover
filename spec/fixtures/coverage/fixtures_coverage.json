@@ -1,0 +1,52 @@
+{
+    "meta": {
+        "timestamp": 1752423024,
+        "simplecov_root": "/Users/mrgrodo/dev/pronto-undercover"
+    },
+    "coverage": {
+        "class.rb": {
+            "lines": [
+                null,
+                null,
+                1,
+                1,
+                1,
+                null,
+                null,
+                1,
+                1,
+                0,
+                null,
+                0,
+                0,
+                0,
+                0,
+                null,
+                null,
+                1
+            ]
+        },
+        "patch.rb": {
+            "lines": [
+                null,
+                null,
+                null,
+                1,
+                1,
+                null,
+                null,
+                1,
+                1,
+                1,
+                null,
+                1,
+                1,
+                1,
+                0,
+                null,
+                null,
+                1
+            ]
+        }
+    }
+}

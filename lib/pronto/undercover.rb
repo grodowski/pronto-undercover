@@ -17,7 +17,7 @@ module Pronto
 
     # @return Array[Pronto::Message]
     def run
-      return [] if !@patches || @patches.count.zero?
+      return [] if !@patches || @patches.none?
 
       @patches
         .select { |patch| valid_patch?(patch) }
@@ -75,14 +75,22 @@ module Pronto
       end.compact
     end
 
+    OPTS_MAPPING = { # rubocop:disable Lint/UselessConstantScoping
+      'exclude-files' => '-x',
+      'include-files' => '-f',
+      'max-warnings' => '-w',
+      'simplecov' => '-s',
+      'lcov' => '-l',
+      'ruby-syntax' => '-r',
+      'path' => '-p'
+    }.freeze
+
     def undercover_options
       config = Pronto::ConfigFile.new.to_h['pronto-undercover']
       return ::Undercover::Options.new.parse([]) unless config
 
       opts = []
-      opts << "-l#{config['lcov']}" if config['lcov']
-      opts << "-r#{config['ruby-syntax']}" if config['ruby-syntax']
-      opts << "-p#{config['path']}" if config['path']
+      OPTS_MAPPING.each { |key, flag| opts << "#{flag}#{config[key]}" if config[key] }
       ::Undercover::Options.new.parse(opts)
     end
   end

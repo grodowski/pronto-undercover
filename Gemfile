@@ -11,6 +11,7 @@ gem 'pry'
 gem 'rake', '~> 13.0'
 gem 'rspec', '~> 3.0'
 gem 'rubocop'
+gem 'ruby-lsp-rspec', require: false
 gem 'simplecov'
 gem 'simplecov-html'
 gem 'simplecov-lcov'
