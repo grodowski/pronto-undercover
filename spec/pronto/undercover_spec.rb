@@ -54,14 +54,14 @@ RSpec.describe Pronto::Undercover do
         write_config(valid_config)
 
         expect(Undercover::Report)
-          .to receive(:new).and_wrap_original do |m, changeset, opts|
+          .to receive(:new).and_wrap_original do |m, changeset, opts, coverage_adapter|
           expect(opts.lcov).to eq('coverage/lcov/fixtures.lcov')
           expect(opts.path).to eq('.')
           expect(opts.syntax_version).to eq('ruby34')
           expect(opts.glob_allow_filters).to eq(['*.rb', 'Rakefile'])
           expect(opts.glob_reject_filters).to eq(['db/*'])
           expect(opts.max_warnings_limit).to eq(100)
-          m.call(changeset, opts)
+          m.call(changeset, opts, coverage_adapter)
         end
 
         Pronto.run(:staged, 'test.git', nil)
@@ -100,10 +100,7 @@ RSpec.describe Pronto::Undercover do
 
       context 'with JSON formatter option' do
         it 'correctly reports on a patch inside of a changed file from JSON report' do
-          config = valid_config.merge(
-            'simplecov' => 'coverage/fixtures_coverage.json',
-            'lcov' => nil
-          )
+          config = valid_config.merge('simplecov' => 'coverage/fixtures_coverage.json')
           write_config(config)
 
           expect_any_instance_of(Undercover::LcovParser).to receive(:coverage).never
@@ -125,6 +122,23 @@ RSpec.describe Pronto::Undercover do
 
           delete_config
         end
+      end
+
+      it 'accepts include-files and exclude-files options' do
+        config = valid_config.merge(
+          'simplecov' => 'coverage/fixtures_coverage.json',
+          'include-files' => '*.rb',
+          'exclude-files' => 'module.rb'
+        )
+        write_config(config)
+
+        results = Pronto.run(:unstaged, 'test.git', nil)
+
+        matched_files = results.map { _1.path }
+        expect(matched_files).to include('patch.rb')
+        expect(matched_files).not_to include('module.rb')
+
+        delete_config
       end
     end
   end

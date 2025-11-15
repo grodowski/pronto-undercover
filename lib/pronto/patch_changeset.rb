@@ -29,6 +29,9 @@ module Pronto
 
     def each_changed_line
       @patches.each do |patch|
+        filepath = patch.delta.new_file[:path]
+        next if @filter_set && !@filter_set.include?(filepath)
+
         patch.added_lines.each do |line|
           yield patch.delta.new_file[:path].to_s, line.new_lineno
         end
@@ -39,6 +42,10 @@ module Pronto
       return :no_changes if file_paths.empty?
 
       :stale_coverage if last_modified > File.mtime(lcov_report_path)
+    end
+
+    def filter_with(filter_set)
+      @filter_set = filter_set
     end
   end
 end

@@ -54,8 +54,18 @@ module Pronto
 
     def undercover_warnings
       @undercover_warnings ||= ::Undercover::Report.new(
-        @patch_changeset, undercover_options
+        @patch_changeset, undercover_options, coverage_adapter
       ).build.flagged_results
+    end
+
+    def coverage_adapter
+      if undercover_options.simplecov_resultset
+        ::Undercover::SimplecovResultAdapter.parse(File.open(undercover_options.simplecov_resultset),
+                                                   undercover_options)
+      else
+        # TODO: lcov will be deprecated end of 2025 and we'll be able to refactor harder
+        ::Undercover::LcovParser.parse(File.open(undercover_options.lcov), undercover_options)
+      end
     end
 
     def offending_line_numbers(patch)
@@ -91,7 +101,7 @@ module Pronto
 
       opts = []
       OPTS_MAPPING.each { |key, flag| opts << "#{flag}#{config[key]}" if config[key] }
-      ::Undercover::Options.new.parse(opts)
+      @undercover_options ||= ::Undercover::Options.new.parse(opts)
     end
   end
 end

@@ -20,8 +20,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.required_ruby_version = '>= 2.5'
 
-  spec.add_dependency 'pronto', '>= 0.9', '< 0.12'
-  spec.add_dependency 'undercover', '~> 0.7'
+  spec.add_dependency 'pronto', '>= 0.11', '< 0.12'
+  spec.add_dependency 'undercover', '~> 0.8'
 
   spec.add_dependency 'base64'
   spec.add_dependency 'bigdecimal'
