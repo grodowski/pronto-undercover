@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-10-17
+### Changed
+- Require `undercover` `>= 0.8`, `< 0.9`, because undercover 0.9.0 changes the changeset API
+
 ## [0.4.0] - 2025-11-15
 ### Added
 - Update `undercover` to `0.8.2`
@@ -33,7 +37,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - support `pronto >= 0.9`
 
-[Unreleased]: https://github.com/grodowski/pronto-undercover/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/grodowski/pronto-undercover/compare/v0.4.1...HEAD
+[0.4.1]: https://github.com/grodowski/pronto-undercover/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/grodowski/pronto-undercover/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/grodowski/pronto-undercover/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/grodowski/pronto-undercover/compare/v0.1.6...v0.2.0
