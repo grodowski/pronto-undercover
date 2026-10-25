@@ -13,6 +13,8 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
 SimpleCov.start do
   add_filter(/^\/spec\//)
 end
+# The gemspec loads the version before SimpleCov starts, so load it again to measure it
+load File.expand_path('../lib/version.rb', __dir__)
 
 require 'pronto/undercover'
 require 'pronto/patch_changeset'
