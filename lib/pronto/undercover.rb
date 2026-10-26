@@ -34,8 +34,7 @@ module Pronto
       patch.additions.positive? && ruby_file?(patch.new_file_full_path)
     end
 
-    # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-    def patch_to_undercover_message(patch)
+    def patch_to_undercover_message(patch) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       offending_line_numbers(patch).map do |warning, msg_line_no|
         patch
           .added_lines
@@ -50,7 +49,6 @@ module Pronto
           end
       end
     end
-    # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
     def undercover_warnings
       @undercover_warnings ||= ::Undercover::Report.new(

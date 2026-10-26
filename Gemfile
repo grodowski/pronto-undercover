@@ -14,5 +14,4 @@ gem 'rubocop'
 gem 'ruby-lsp-rspec', require: false
 gem 'simplecov'
 gem 'simplecov-html'
-gem 'simplecov-lcov'
 gem 'timecop'

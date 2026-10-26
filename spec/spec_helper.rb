@@ -5,14 +5,16 @@ require 'timecop'
 require 'pry'
 
 require 'simplecov'
-require 'simplecov-lcov'
-SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
+require 'undercover/simplecov_formatter'
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
-  [SimpleCov::Formatter::LcovFormatter, SimpleCov::Formatter::HTMLFormatter]
+  [SimpleCov::Formatter::Undercover, SimpleCov::Formatter::HTMLFormatter]
 )
 SimpleCov.start do
   add_filter(/^\/spec\//)
+  enable_coverage(:branch)
 end
+# The gemspec loads the version before SimpleCov starts, so load it again to measure it
+load File.expand_path('../lib/version.rb', __dir__)
 
 require 'pronto/undercover'
 require 'pronto/patch_changeset'
